@@ -1,39 +1,37 @@
-import Vue from 'vue';
-import App from './layouts/Main.vue';
+import Vue from "vue";
+import App from "./layouts/Main.vue";
 
-import store from './stores'
+import store from "./stores";
 
 // Plugin
-import './plugin'
+import "./plugin";
 
 // Router
-import router from './routes'
+import router from "./routes";
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    console.log(store.getters["auth/loggedIn"])
+    // console.log("hello" + store.getters["auth/loggedIn"]);
     if (!store.getters["auth/loggedIn"]) {
       next({
-        path: '/login',
+        path: "/login"
         // query: { redirect: to.fullPath }
-      })
+      });
     } else {
-      next()
+      next();
     }
   } else {
-    next() // make sure to always call next()!
+    next(); // make sure to always call next()!
   }
-})
-
-
+});
 
 Meteor.startup(() => {
   new Vue({
-    el: '#app',
+    el: "#app",
     store,
     router,
-    ...App,
+    ...App
   });
 });

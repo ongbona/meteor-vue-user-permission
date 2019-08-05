@@ -17,8 +17,7 @@ export default {
       currentLayout: AdminLayout
     };
   },
-  mounted(){
-  },
+  mounted() {},
   watch: {
     "$route.meta.layout": {
       handler(val) {
@@ -36,13 +35,6 @@ export default {
   computed: {
     user() {
       return this.$store.state.auth.user;
-    }
-  },
-  mounted() {
-    if (this.user._id == "") {
-      this.$router.push("/login");
-    } else if (this.$route.path == "/login" && this.user._id != "") {
-      this.$router.push("/");
     }
   }
 };

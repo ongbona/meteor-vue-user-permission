@@ -15,7 +15,8 @@
       <Drawer></Drawer>
 
       <q-page-container>
-        {{menus}}hi
+        {{$route.path}}
+        {{menus}}
         <router-view></router-view>
       </q-page-container>
     </q-layout>
