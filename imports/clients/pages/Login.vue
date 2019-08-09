@@ -1,6 +1,10 @@
 <template>
   <div>
-    <q-card class="form-content">
+    <q-card
+      flat
+      bordered
+      class="absolute-center login"
+    >
       <q-card-section>
         <div class="text-h5 text-bold text-center text-blue-grey-10 q-py-sm">Log In</div>
       </q-card-section>
@@ -9,11 +13,14 @@
         <!-- Email -->
         <q-input
           v-model="form.username"
-          name="email"
           class="q-mb-md input-login"
           outlined
           dense
           placeholder="Email Address or User"
+          name="username"
+          v-validate="'required'"
+          :error="errors.has('username')"
+          :error-message="errors.first('username')"
         />
         <!-- Password -->
         <q-input
@@ -24,6 +31,9 @@
           outlined
           dense
           placeholder="Password"
+          v-validate="'required'"
+          :error="errors.has('password')"
+          :error-message="errors.first('password')"
         />
       </q-card-section>
 
@@ -37,6 +47,8 @@
           label="Log In"
           color="primary"
           class="full-width"
+          dense
+          flat
         ></q-btn>
 
         <div>Forgot password?</div>
@@ -50,13 +62,13 @@
       Don't have an account?
       <span>Sign Up</span>
     </div>
-    {{user}}
-    <br>
-    {{menus}}
   </div>
 </template>
 
 <script>
+import Vue from "vue";
+import VeeValidate from "vee-validate";
+Vue.use(VeeValidate);
 import menu from "../sidebar";
 export default {
   computed: {
@@ -73,7 +85,16 @@ export default {
 
   methods: {
     btnLogin() {
-      this.$store.dispatch("auth/login", { form: this.form, menu: this.menus });
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          // eslint-disable-next-line
+          this.$store.dispatch("auth/login", {
+            form: this.form,
+            menu: this.menus
+          });
+          return;
+        }
+      });
     }
   },
   data() {
@@ -89,3 +110,8 @@ export default {
   }
 };
 </script>
+<style>
+.login {
+  width: 30%;
+}
+</style>

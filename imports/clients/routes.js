@@ -11,10 +11,10 @@ const routes = [
     component: () => import("./pages/Item.vue")
   },
   {
-    path: "/about",
-    name: "about",
-    meta: { requiresAuth: true, linkActive: "about" },
-    component: () => import("./pages/About.vue")
+    path: "/search",
+    name: "search",
+    meta: { requiresAuth: true, linkActive: "search" },
+    component: () => import("./pages/Search.vue")
   },
   {
     path: "/register",

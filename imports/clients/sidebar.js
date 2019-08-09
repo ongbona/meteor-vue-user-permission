@@ -6,9 +6,9 @@ export default (menus = [
     permission: ["admin", "user"]
   },
   {
-    title: "About",
+    title: "Search Item",
     icon: "more",
-    url: "about",
+    url: "search",
     permission: ["admin", "user"]
   },
   {
