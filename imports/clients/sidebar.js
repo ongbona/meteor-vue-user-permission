@@ -2,20 +2,17 @@ export default (menus = [
   {
     title: "Item",
     icon: "inbox",
-    url: "item",
-    permission: ["admin", "user"]
+    url: "item"
   },
   {
     title: "Search Item",
     icon: "more",
-    url: "search",
-    permission: ["admin", "user"]
+    url: "search"
   },
   {
     title: "Resister",
     icon: "person",
-    url: "register",
-    permission: ["admin"]
+    url: "register"
   }
 ]);
 // export default menus;

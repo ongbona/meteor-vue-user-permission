@@ -17,29 +17,38 @@
           </q-item>
           <q-expansion-item
             expand-separator
-            icon="mail"
-            label="Inbox"
+            icon="settings"
+            label="Settings"
           >
             <q-expansion-item
               :header-inset-level="1"
               expand-separator
-              icon="receipt"
-              label="Receipts"
+              icon="person"
+              label="Customer"
               :content-inset-level="2"
             >
               <q-item
                 clickable
                 v-ripple
-                v-for="(menu,n) in menus"
-                @click="router(menu.url)"
-                :active="$route.path===`/`+menu.url"
-                :key="n"
+                @click="router('search')"
+                :active="$route.path===`/`+'search'"
               >
                 <q-item-section avatar>
-                  <q-icon :name="menu.icon" />
+                  <q-icon :name="search" />
                 </q-item-section>
-
-                <q-item-section>{{menu.title}}</q-item-section>
+                <q-item-section>Search</q-item-section>
+              </q-item>
+              <q-item
+                v-if="user.profile.permission=='admin'"
+                clickable
+                v-ripple
+                @click="router('register')"
+                :active="$route.path===`/`+'register'"
+              >
+                <q-item-section avatar>
+                  <q-icon :name="add" />
+                </q-item-section>
+                <q-item-section>Regsiter</q-item-section>
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
@@ -52,9 +61,6 @@
 <script>
 export default {
   computed: {
-    menus() {
-      return this.$store.state.auth.menus;
-    },
     user() {
       return this.$store.state.auth.user;
     },

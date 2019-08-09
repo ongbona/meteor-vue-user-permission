@@ -15,8 +15,7 @@
       <Drawer></Drawer>
 
       <q-page-container>
-        {{$route.path}}
-        {{menus}}
+        {{user.profile.permission}}
         <router-view></router-view>
       </q-page-container>
     </q-layout>

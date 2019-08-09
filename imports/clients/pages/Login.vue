@@ -69,7 +69,6 @@
 import Vue from "vue";
 import VeeValidate from "vee-validate";
 Vue.use(VeeValidate);
-import menu from "../sidebar";
 export default {
   computed: {
     user() {
@@ -89,8 +88,7 @@ export default {
         if (result) {
           // eslint-disable-next-line
           this.$store.dispatch("auth/login", {
-            form: this.form,
-            menu: this.menus
+            form: this.form
           });
           return;
         }
@@ -99,7 +97,6 @@ export default {
   },
   data() {
     return {
-      menus: menu,
       form: {
         username: "",
         password: ""

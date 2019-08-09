@@ -7,18 +7,18 @@ const routes = [
   {
     path: "/item",
     name: "item",
-    meta: { requiresAuth: true, linkActive: "item" },
+    meta: { requiresAuth: true, linkActive: "item", role: ["admin", "user"] },
     component: () => import("./pages/Item.vue")
   },
   {
     path: "/search",
     name: "search",
-    meta: { requiresAuth: true, linkActive: "search" },
+    meta: { requiresAuth: true, linkActive: "search", role: ["admin", "user"] },
     component: () => import("./pages/Search.vue")
   },
   {
     path: "/register",
-    meta: { requiresAuth: true, linkActive: "register" },
+    meta: { requiresAuth: true, linkActive: "register", role: ["admin"] },
     component: () => import("./pages/Register.vue"),
     name: "register"
   },

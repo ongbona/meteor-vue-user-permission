@@ -4,7 +4,6 @@ export default {
   namespaced: true,
   state: {
     count: 8,
-    menus: [],
     user: [
       {
         profile: {
@@ -29,29 +28,13 @@ export default {
     setUser(state, val) {
       state.user = val;
       document.location.reload();
-    },
-    setMenu(state, val) {
-      state.menus = val;
     }
   },
   actions: {
     setUser({ commit }, val) {
       commit("setUser", val);
     },
-    setMenu({ commit }, obj) {
-      // console.log(obj);
-      let array = [];
-      _.forEach(obj.menu, doc => {
-        _.forEach(doc.permission, permission => {
-          if (permission == obj.permission) {
-            array.push(doc);
-          }
-        });
-      });
-      commit("setMenu", array);
-      return array;
-      // commit("setMenu", array);
-    },
+
     register({ commit }, val) {
       Meteor.call("insertUser", val, (error, result) => {
         if (!error) {
@@ -73,12 +56,7 @@ export default {
             if (error) {
               console.log(error);
             } else {
-              dispatch("setMenu", {
-                menu: obj.menu,
-                permission: Meteor.user().profile.permission
-              }).then(() => {
-                dispatch("setUser", Meteor.user());
-              });
+              dispatch("setUser", Meteor.user());
             }
           }
         );

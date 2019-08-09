@@ -12,13 +12,16 @@ const store = new Vuex.Store({
   actions: {
     RoleRoute({ state }) {
       let x = false;
-
-      _.forEach(state.auth.menus, menu => {
-        if ("/" + menu.url == window.location.pathname) {
-          x = true;
+      _.forEach(router.options.routes, menu => {
+        if (menu.path == window.location.pathname) {
+          _.forEach(menu.meta.role, permission => {
+            if (permission == state.auth.user.profile.permission) {
+              console.log(permission);
+              x = true;
+            }
+          });
         }
       });
-
       if (x == false) {
         router.push("/");
       }
