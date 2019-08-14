@@ -3,6 +3,7 @@
     <component :is="currentLayout">
       <router-view></router-view>
     </component>
+    <modal ref="modal" />
   </div>
 </template>
 
@@ -10,14 +11,17 @@
 // import Login from "../pages/Login";
 import AdminLayout from "./AdminLayout";
 import PublicLayout from "./Public";
+import Modal from "../components/Modal";
 export default {
-  components: { PublicLayout, AdminLayout },
+  components: { PublicLayout, AdminLayout, Modal },
   data() {
     return {
       currentLayout: AdminLayout
     };
   },
-  mounted() {},
+  mounted() {
+    this.$root.$modal = this.$refs.modal.open;
+  },
   watch: {
     "$route.meta.layout": {
       handler(val) {

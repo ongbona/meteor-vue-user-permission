@@ -5,20 +5,26 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/customer",
+    name: "customer",
+    meta: { requiresAuth: true, role: ["admin", "user"] },
+    component: () => import("./pages/Customer.vue")
+  },
+  {
     path: "/item",
     name: "item",
-    meta: { requiresAuth: true, linkActive: "item", role: ["admin", "user"] },
+    meta: { requiresAuth: true, role: ["admin", "user"] },
     component: () => import("./pages/Item.vue")
   },
   {
     path: "/search",
     name: "search",
-    meta: { requiresAuth: true, linkActive: "search", role: ["admin", "user"] },
+    meta: { requiresAuth: true, role: ["admin", "user"] },
     component: () => import("./pages/Search.vue")
   },
   {
     path: "/register",
-    meta: { requiresAuth: true, linkActive: "register", role: ["admin"] },
+    meta: { requiresAuth: true, role: ["admin"] },
     component: () => import("./pages/Register.vue"),
     name: "register"
   },
@@ -31,13 +37,13 @@ const routes = [
   },
   {
     path: "/",
-    meta: { requiresAuth: true, linkActive: "" },
+    meta: { requiresAuth: true },
     component: () => import("../clients/pages/Home.vue"),
     name: "home"
   },
   {
     path: "/admin",
-    meta: { requiresAuth: true, layout: "AdminLayout", linkActive: "" },
+    meta: { requiresAuth: true, layout: "AdminLayout" },
     component: () => import("../clients/layouts/AdminLayout.vue"),
     name: "admin"
   }

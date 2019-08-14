@@ -33,9 +33,6 @@
                 @click="router('search')"
                 :active="$route.path===`/`+'search'"
               >
-                <q-item-section avatar>
-                  <q-icon :name="search" />
-                </q-item-section>
                 <q-item-section>Search</q-item-section>
               </q-item>
               <q-item
@@ -45,10 +42,16 @@
                 @click="router('register')"
                 :active="$route.path===`/`+'register'"
               >
-                <q-item-section avatar>
-                  <q-icon :name="add" />
-                </q-item-section>
                 <q-item-section>Regsiter</q-item-section>
+              </q-item>
+              <q-item
+                v-if="user.profile.permission=='admin'"
+                clickable
+                v-ripple
+                @click="router('customer')"
+                :active="$route.path===`/`+'customer'"
+              >
+                <q-item-section>Customer</q-item-section>
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
