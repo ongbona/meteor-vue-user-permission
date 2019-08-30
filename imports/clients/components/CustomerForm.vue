@@ -25,7 +25,7 @@
             label="Name"
           />
           <q-input
-            v-model="form.age"
+            v-model.number="form.age"
             label="Age"
           />
         </div>
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import { insertCustomer } from "../../api/methods/customerMethods";
 export default {
   data() {
     return {
@@ -88,7 +89,13 @@ export default {
         message: "Success",
         position: "top"
       });
-      console.log(this.form);
+      insertCustomer.call(this.form, (error, result) => {
+        if (result) {
+          console.log("inserted", result);
+        } else {
+          console.log(error);
+        }
+      });
       if (this.isModal) {
         // Emit to modal
         this.$emit("save", "Success");
