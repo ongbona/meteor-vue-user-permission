@@ -1,9 +1,19 @@
 <template>
   <q-toolbar>
-    <q-btn flat @click="setDrawer" round dense icon="menu" />
+    <q-btn
+      flat
+      @click="setDrawer"
+      round
+      dense
+      icon="menu"
+    />
     <q-toolbar-title>Doctor IT</q-toolbar-title>
     <!-- account -->
-    <q-btn round flat icon="person">
+    <q-btn
+      round
+      flat
+      icon="person"
+    >
       <q-menu>
         <div class="row no-wrap q-pa-md">
           <div class="column items-center">
@@ -57,12 +67,11 @@ export default {
     },
     loggedIn() {
       return this.$store.getters["auth/loggedIn"];
-      
     }
   },
   methods: {
     btnLogout() {
-      this.$store.dispatch("auth/logout");
+      this.$store.dispatch("auth/logout").then(result => {});
     },
     setDrawer() {
       this.$store.dispatch("layout/setDrawer", !this.drawer);

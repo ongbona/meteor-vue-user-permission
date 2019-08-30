@@ -31,22 +31,26 @@ const routes = [
 
   {
     path: "/login",
-    meta: { requiresAuth: false, layout: "PublicLayout" },
+    meta: { requiresAuth: false, layout: "PublicLayout", role: ["login"] },
     component: () => import("./pages/Login.vue"),
     name: "login"
   },
   {
     path: "/",
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, role: ["admin", "user"] },
     component: () => import("../clients/pages/Home.vue"),
     name: "home"
-  },
-  {
-    path: "/admin",
-    meta: { requiresAuth: true, layout: "AdminLayout" },
-    component: () => import("../clients/layouts/AdminLayout.vue"),
-    name: "admin"
   }
+  // {
+  //   path: "/",
+  //   meta: {
+  //     requiresAuth: true,
+  //     layout: "AdminLayout",
+  //     role: ["admin", "user"]
+  //   },
+  //   component: () => import("../clients/layouts/AdminLayout.vue"),
+  //   name: "admin"
+  // }
   // AdminLayout
   // { path: '/bar', component: Bar }
 ];

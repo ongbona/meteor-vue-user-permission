@@ -1,19 +1,14 @@
 <template>
-    <div>
-       <Login></Login>
-    </div>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import Login from '../pages/Login'
 export default {
-components:{
-    Login,
-}
-
-}
+  components: {}
+};
 </script>
 
 <style>
-
 </style>
