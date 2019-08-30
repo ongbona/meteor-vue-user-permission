@@ -76,7 +76,7 @@ export default {
       this.$router.push({ name: url });
     }
   },
-  mounted() {
+  created() {
     this.$store.dispatch("layout/setDrawer", true);
   },
   data() {

@@ -4,13 +4,11 @@ export default {
   namespaced: true,
   state: {
     count: 8,
-    user: [
-      {
-        profile: {
-          name: null
-        }
+    user: {
+      profile: {
+        permission: "login"
       }
-    ]
+    }
   },
   getters: {
     loggedIn(state) {

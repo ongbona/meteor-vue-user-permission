@@ -25,15 +25,10 @@ export default {
   watch: {
     "$route.meta.layout": {
       handler(val) {
+        this.currentLayout = val ? val : AdminLayout;
         console.log("Layout:", val);
-        this.changeLayout(val);
       }
       // immediate: true,
-    }
-  },
-  methods: {
-    changeLayout(val) {
-      this.currentLayout = val ? val : AdminLayout;
     }
   },
   computed: {
