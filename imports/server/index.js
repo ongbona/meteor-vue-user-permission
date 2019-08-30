@@ -1,8 +1,9 @@
 import { Meteor } from "meteor/meteor";
 
 Meteor.startup(() => {
-  import "./methods/account";
-  import "./methods/methodItems";
+  import "../api/methods/account";
+  import "../api/methods/methodItems";
+  import "../api/methods/customerMethods";
   if (Meteor.isServer) {
     if (Meteor.users.find().count() === 0) {
       const userId = Accounts.createUser({
