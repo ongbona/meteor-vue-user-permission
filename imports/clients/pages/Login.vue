@@ -87,10 +87,7 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          this.$store.dispatch("auth/login", {
-            form: this.form
-          });
-          return;
+          this.$store.dispatch("auth/login", this.form);
         }
       });
     }

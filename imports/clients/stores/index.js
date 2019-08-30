@@ -8,8 +8,16 @@ import _ from "lodash";
 import router from "../routes";
 const store = new Vuex.Store({
   state: {},
-  mutations: {},
+  mutations: {
+    resetState(state) {
+      state = null;
+    }
+  },
   actions: {
+    resetState({ commit }) {
+      console.log("called");
+      commit("resetState");
+    },
     RoleRoute({ state }) {
       let x = false;
       _.forEach(router.options.routes, menu => {

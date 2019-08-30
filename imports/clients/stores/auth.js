@@ -1,9 +1,9 @@
 import { Meteor } from "meteor/meteor";
 import _ from "lodash";
+import router from "../routes";
 export default {
   namespaced: true,
   state: {
-    count: 8,
     user: {
       profile: {
         permission: "login"
@@ -17,15 +17,16 @@ export default {
   },
   mutations: {
     logout(state) {
-      state.user = {};
+      state.user = {
+        profile: {
+          permission: "login"
+        }
+      };
+      Meteor.logout();
     },
-    increment(state) {
-      // mutate state
-      state.count++;
-    },
+
     setUser(state, val) {
       state.user = val;
-      document.location.reload();
     }
   },
   actions: {
@@ -40,24 +41,34 @@ export default {
         }
       });
     },
-    logout({ commit }) {
+    meteorLogout() {
       Meteor.logout();
-      commit("logout");
-      document.location.reload();
     },
-    login({ commit, state, dispatch }, obj) {
+    logout({ commit, dispatch }) {
+      new Promise((resolve, reject) => {
+        dispatch("meteorLogout").then(() => {
+          dispatch("resetState", null, { root: true })
+            .then(() => {
+              commit("logout");
+            })
+            .then(() => {
+              router.push("/login");
+            });
+        });
+        resolve("Done");
+      });
+    },
+    login({ commit, state, dispatch }, form) {
       new Promise(() => {
-        Meteor.loginWithPassword(
-          obj.form.username,
-          obj.form.password,
-          error => {
-            if (error) {
-              console.log(error);
-            } else {
-              dispatch("setUser", Meteor.user());
-            }
+        console.log("Hi");
+        Meteor.loginWithPassword(form.username, form.password, error => {
+          if (error) {
+            console.log(error);
+          } else {
+            dispatch("setUser", Meteor.user());
+            router.push("/");
           }
-        );
+        });
       });
     }
   }
