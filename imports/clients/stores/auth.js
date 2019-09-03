@@ -16,15 +16,6 @@ export default {
     }
   },
   mutations: {
-    logout(state) {
-      state.user = {
-        profile: {
-          permission: "login"
-        }
-      };
-      Meteor.logout();
-    },
-
     setUser(state, val) {
       state.user = val;
     }
@@ -47,13 +38,9 @@ export default {
     logout({ commit, dispatch }) {
       new Promise((resolve, reject) => {
         dispatch("meteorLogout").then(() => {
-          dispatch("resetState", null, { root: true })
-            .then(() => {
-              commit("logout");
-            })
-            .then(() => {
-              router.push("/login");
-            });
+          dispatch("resetState", null, { root: true }).then(() => {
+            router.push("/login");
+          });
         });
         resolve("Done");
       });
