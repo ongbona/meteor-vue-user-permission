@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.4",
     "@quasar/extras": "^1.1.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "meteor-node-stubs": "^0.4.1",
     "quasar": "^1.0.0-rc.4",
     "simpl-schema": "^1.5.5",
