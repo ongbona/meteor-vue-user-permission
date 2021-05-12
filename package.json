@@ -13,7 +13,7 @@
     "lodash": "^4.17.15",
     "meteor-node-stubs": "^0.4.1",
     "quasar": "^1.0.0-rc.4",
-    "simpl-schema": "^1.5.5",
+    "simpl-schema": "^1.10.2",
     "vee-validate": "^2.2.14",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
